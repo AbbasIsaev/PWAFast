@@ -18,6 +18,10 @@ npm run start-npx
 
 ![img.png](docs/installApp.png)
 
+Уведомления пользователя о доступности обновления.
+
+![img.png](docs/updateAvailable.png)
+
 ![img.png](docs/serviceWorkers.png)
 
 ### Сгенерировать проект с нуля

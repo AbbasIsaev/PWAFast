@@ -61,6 +61,13 @@ function registerValidSW(swUrl: string, config?: Config) {
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
+      // Добавил проверку на доступность обновления системы
+      // Случай когда перезагрузили страницу без нажатия на обновить
+      if (registration.waiting && config?.onUpdate) {
+        // Уведомляем пользователя о доступности обновления
+        config.onUpdate(registration)
+      }
+
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
