@@ -10,6 +10,8 @@
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://cra.link/PWA
 
+import {subscribeMain} from './subscribe-user';
+
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
@@ -61,6 +63,9 @@ function registerValidSW(swUrl: string, config?: Config) {
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
+      // Подписать пользователя на Push-сообщения
+      subscribeMain(registration);
+
       // Добавил проверку на доступность обновления системы
       // Случай когда перезагрузили страницу без нажатия на обновить
       if (registration.waiting && config?.onUpdate) {

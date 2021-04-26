@@ -22,6 +22,13 @@ npm run start-npx
 
 ![img.png](docs/updateAvailable.png)
 
+Включения push-сообщения.
+
+![img.png](docs/pushRights.png)
+![img.png](docs/pushMessage.png)
+
+Service worker.
+
 ![img.png](docs/serviceWorkers.png)
 
 ### Сгенерировать проект с нуля

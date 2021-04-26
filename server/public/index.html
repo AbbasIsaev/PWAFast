@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <title>Express</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+<h1>Express</h1>
+<p>[POST] Список REST API:</p>
+<ul>
+    <li>api/web_push/send_notification - отправить уведомление по подписке.
+        <details>
+            <summary>Посмотреть параметры запроса</summary>
+            <form action="/api/web_push/send_notification" method="post">
+                <p>
+                    <label>
+                        Подписка
+                        <input name="subscription" type="text">
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Текст
+                        <input name="payload" type="text">
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Время жизни push сообщения (сек.)
+                        <input name="ttl" type="text" value="30">
+                    </label>
+                </p>
+                <p><input type="submit" value="Отправить"/></p>
+            </form>
+            <pre>Пример заполнения полей:
+{
+    "subscription": "{
+                        "endpoint":"https://fcm.googleapis.com/fcm/send/d6Vl-IRg_CE:APA91bEJpELVKcnB7VO-8V1xX3xNmRNAs-EEY9LDlwSoF9aUOSWIRGt5_fcIM4HUIWqmjBr2D4WiWxb_TGb0oDCRcc3f4rGTb3aw9pf3Ui5PZqu_Ghs1q-WBQ99wa67hqrBhY8pQcbCq",
+                        "expirationTime":null,
+                        "keys":{
+                            "p256dh":"BFnpqYyS3xKvAgEo3Wa1oNDThdcWsCH34zKEfX64uMfWDmpoJZCT_Ny-p6PSNqfQsyUPrpKdNfJdfo8G31jfm18",
+                            "auth":"ski78DfZkl8M7nUHZ0JS-Q"
+                        }
+                     }",
+    "payload": "{
+                    "title":"Заголовок",
+                    "body": "Тело сообщения"
+                }",
+    "ttl": 30
+}
+            </pre>
+        </details>
+    </li>
+</ul>
+<ul>
+    <li>api/web_push/send_notification_all - отправить уведомление всем подписчикам.
+        <details>
+            <summary>Посмотреть параметры запроса</summary>
+            <form action="/api/web_push/send_notification_all" method="post">
+                <p>
+                    <label>
+                        Текст
+                        <input name="payload" type="text">
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Время жизни push сообщения (сек.)
+                        <input name="ttl" type="text" value="30">
+                    </label>
+                </p>
+                <p><input type="submit" value="Отправить"/></p>
+            </form>
+            <pre>Пример заполнения полей:
+{
+    "payload": "{
+                    "title":"Заголовок",
+                    "body": "Тело сообщения"
+                }",
+    "ttl": 30
+}
+            </pre>
+        </details>
+    </li>
+</ul>
+
+<p>[GET] Список REST API:</p>
+<ul>
+    <li><a href="api/web_push/public_key">Публичный ключ</a></li>
+    <li><a href="api/web_push/subscriptions">Подписки</a></li>
+</ul>
+</body>
+
+</html>

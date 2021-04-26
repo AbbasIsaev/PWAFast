@@ -87,3 +87,38 @@ self.addEventListener('message', (event) => {
 })
 
 // Any other custom service worker logic can go here.
+self.addEventListener('push', event => {
+    let data
+    try {
+        data = event.data?.json()
+    } catch (error) {
+        data = {
+            body: event.data?.text()
+        }
+    }
+    const title = data.title || 'Система'
+    const options = {
+        body: data.body,
+        icon: 'favicon64.ico',
+        badge: 'favicon64.ico',
+        vibrate: [100, 50, 100]
+    }
+
+    event.waitUntil(self.registration.showNotification(title, options))
+})
+
+self.addEventListener('notificationclick', event => {
+    event.notification.close()
+    event.waitUntil(
+        self.clients.matchAll({
+            type: 'window'
+        }).then(clientList => {
+            if (clientList.length > 0) {
+                // Ставим фокус на первую вкладку
+                return clientList[0].focus()
+            }
+            // Открываем главную страницу
+            return self.clients.openWindow('/')
+        })
+    )
+})
